@@ -88,7 +88,6 @@ if (isset($_GET['id_member'])) {
     if (isset($_POST['submit'])) {
         $tgl_daftar = date_create($_POST['tgl_daftar']);
         $tgl_daftar = date_format($tgl_daftar, "Y-m-d H:i:s");
-        print_r($_POST);
         tambahdatamember($_POST['nama_member'], $_POST['nomor_member'], $_POST['alamat'], $tgl_daftar, $_POST['tgl_terakhir_bayar']);
     }
     if (isset($_POST['update'])) {

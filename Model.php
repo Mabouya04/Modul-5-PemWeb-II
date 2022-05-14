@@ -75,10 +75,10 @@
         }
     }
 
-    function tambahdatapeminjaman($tglpinjam, $tglkembali, $id_member, $id_buku){
-        $mysql = "INSERT INTO `peminjaman` (`tgl_peminjaman`, `tgl_kembali`,`id_buku`,`id_member`) VALUES (:tglpinjam,:tglkembali,:id_buku,:id_member)";
+    function tambahdatapeminjaman($tglpinjam, $tglkembali){
+        $mysql = "INSERT INTO `peminjaman` (`tgl_peminjaman`, `tgl_kembali`) VALUES (:tglpinjam,:tglkembali)";
         $state = koneksi()->prepare($mysql);
-        $result = $state->execute(array(':tglpinjam' => $tglpinjam, ':tglkembali'=> $tglkembali, ':id_buku' => $id_buku, ':id_member' => $id_member));
+        $result = $state->execute(array(':tglpinjam' => $tglpinjam, ':tglkembali'=> $tglkembali));
 
         if (!empty($result)){
             header('location:Peminjaman.php');
@@ -104,24 +104,29 @@
         $GLOBALS['result'] = $state->fetchAll();
     }
 
-
     function updatemember($id, $nama, $no_member, $almt, $tgl_daftar, $tgl_terakhir_bayar){
         $pdo_statement = koneksi()->prepare(
-            "update member set nama='" . $nama . "', nomor_member='" . $no_member . "', alamat='" . $almt . "', tgl_mendaftar='" . $tgl_daftar . "', tgl_terakhir_bayar='" . $tgl_terakhir_bayar . "' where id_member=" . $id
+            "update member set nama_member='" . $nama . "', nomor_member='" . $no_member . "', alamat='" . $almt . "', tgl_mendaftar='" . $tgl_daftar . "', tgl_terakhir_bayar='" . $tgl_terakhir_bayar . "' where id_member=" . $id
         );
-        $pdo_statement->execute();
+        $result = $pdo_statement->execute();
+        if (!empty($result)) {
+            header('location:Member.php');
+        }
     }
 
     function updatebuku($id, $judul, $penulis, $penerbit, $thnterbit){
         $pdo_statement = koneksi()->prepare(
             "update buku set judul_buku='" . $judul . "', penulis='" . $penulis . "', penerbit='" . $penerbit . "', tahun_terbit='" . $thnterbit . "' where id_buku=" . $id
         );
-        $pdo_statement->execute();
+        $result = $pdo_statement->execute();
+        if (!empty($result)) {
+            header('location:Buku.php');
+        }
     }
 
-    function updatepeminjaman($id, $tglpinjam, $tglkembali, $id_member, $id_buku) {
+    function updatepeminjaman($id, $tglpinjam, $tglkembali) {
         $pdo_statement = koneksi()->prepare(
-            "UPDATE peminjaman SET tgl_peminjaman='" . $tglpinjam ."', tgl_kembali='" . $tglkembali . "', id_buku='".$id_buku."', id_member='".$id_member."' WHERE id_peminjaman = ". $id
+            "UPDATE peminjaman SET tgl_peminjaman='" . $tglpinjam ."', tgl_kembali='" . $tglkembali . "' WHERE id_peminjaman = ". $id
         );
         $result = $pdo_statement->execute();
         if (!empty($result)) {

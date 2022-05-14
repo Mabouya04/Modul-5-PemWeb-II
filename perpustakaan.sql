@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Bulan Mei 2022 pada 10.13
+-- Waktu pembuatan: 14 Bulan Mei 2022 pada 06.46
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.2
 
@@ -85,19 +85,8 @@ INSERT INTO `member` (`id_member`, `nama_member`, `nomor_member`, `alamat`, `tgl
 CREATE TABLE `peminjaman` (
   `id_peminjaman` int(11) NOT NULL,
   `tgl_peminjaman` date NOT NULL,
-  `tgl_kembali` date NOT NULL,
-  `id_buku` int(11) NOT NULL,
-  `id_member` int(11) NOT NULL
+  `tgl_kembali` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `peminjaman`
---
-
-INSERT INTO `peminjaman` (`id_peminjaman`, `tgl_peminjaman`, `tgl_kembali`, `id_buku`, `id_member`) VALUES
-(1, '2022-05-11', '2022-07-11', 4, 1),
-(2, '2022-05-11', '2022-07-11', 4, 1),
-(6, '2022-06-12', '2022-07-12', 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -107,8 +96,7 @@ INSERT INTO `peminjaman` (`id_peminjaman`, `tgl_peminjaman`, `tgl_kembali`, `id_
 -- Indeks untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  ADD PRIMARY KEY (`id_buku`),
-  ADD UNIQUE KEY `id_buku` (`id_buku`);
+  ADD PRIMARY KEY (`id_buku`);
 
 --
 -- Indeks untuk tabel `member`
@@ -120,9 +108,7 @@ ALTER TABLE `member`
 -- Indeks untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  ADD PRIMARY KEY (`id_peminjaman`),
-  ADD KEY `id_buku` (`id_buku`),
-  ADD KEY `id_member` (`id_member`);
+  ADD PRIMARY KEY (`id_peminjaman`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -132,30 +118,19 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `member`
 --
 ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `peminjaman`
---
-ALTER TABLE `peminjaman`
-  ADD CONSTRAINT `id_buku` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_member` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE CASCADE ON UPDATE CASCADE;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

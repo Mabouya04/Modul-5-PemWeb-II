@@ -47,22 +47,6 @@ if (isset($_GET['id_peminjaman'])) {
             </div>
             <div class="row">
                 <div class="col" style="width: 250px">
-                    Id Buku    
-                </div>
-                <div class="col" style="width: 250px;">
-                    <input type="text" name="id_buku" <?php echo (isset($_GET['id_peminjaman'])) ?  "value = " . $result[0]["id_peminjaman"] . "" : "value = '' "; ?> required> <br>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="width: 250px">
-                    Id Member    
-                </div>
-                <div class="col" style="width: 250px;">
-                    <input type="text" name="id_member" <?php echo (isset($_GET['id_peminjaman'])) ?  "value = " . $result[0]["id_member"] . "" : "value = '' "; ?> required> <br>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="width: 250px">
                     <?php 
                     if (isset($_GET['id_peminjaman'])) {
                         echo "<button type=\"submit\" name=\"update\" class=\"btn btn-warning\">Update</button>";
@@ -78,10 +62,10 @@ if (isset($_GET['id_peminjaman'])) {
 
     <?php
     if (isset($_POST['submit'])) {
-        tambahdatapeminjaman($_POST['tgl_peminjaman'], $_POST['tgl_kembali'], $_POST['id_buku'], $_POST['id_member']);
+        tambahdatapeminjaman($_POST['tgl_peminjaman'], $_POST['tgl_kembali']);
     }
     if (isset($_POST['update'])) {
-        updatepeminjaman($_GET['id_peminjaman'], $_POST['tgl_peminjaman'], $_POST['tgl_kembali'], $_POST['id_buku'], $_POST['id_member']);
+        updatepeminjaman($_GET['id_peminjaman'], $_POST['tgl_peminjaman'], $_POST['tgl_kembali']);
     }
     ?>
 
