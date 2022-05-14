@@ -34,8 +34,6 @@ if (isset($_GET['id_peminjaman'])) {
                 <th>Id Peminjaman</th>
                 <th>Tanggal Peminjaman</th>
                 <th>Tanggal Kembali</th>
-                <th>Id Member</th>
-                <th>Id Buku</th>
                 <th>Aksi</th>
             </tr>
             <?= viewData("peminjaman") ?>

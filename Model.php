@@ -44,8 +44,6 @@
                     echo "<td>" . $row['id_peminjaman']. "</td>";
                     echo "<td>" . $row["tgl_peminjaman"] . "</td>";
                     echo "<td>" . $row["tgl_kembali"] . "</td>";
-                    echo "<td>" . $row['id_member']. "</td>";
-                    echo "<td>" . $row['id_buku']. "</td>";
                     echo "<td>";
                     echo "<a href='FormPeminjaman.php?id_peminjaman=" . $row['id_peminjaman'] . "' class='btn btn-warning ml-2 mb-1' style='width: 100px'>Edit</a><br>";
                     echo "<a href='Peminjaman.php?id_peminjaman=" . $row['id_peminjaman'] . "' onclick=\"return confirm('Yakin Hapus?')\" class='btn btn-danger ml-2' style='width: 100px'>Hapus</a>";
